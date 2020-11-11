@@ -7,7 +7,13 @@ invite friends
 {% block content %}
     <ul>
         {% for item in qs %}
-            <li>{{item}}</li>
+        <div class="ui segment">
+            <div class="ui grid">
+                <div class="row">
+                    <li>{{item}}</li>
+                </div>
+            </div>
+        </div>
         {% endfor %}
     </ul>
 {% endblock content %}

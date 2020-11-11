@@ -10,7 +10,7 @@ all profiles
         <h1>No profiles to interact with</h1>
     {% endif %}
 
-    {% for obj in object_list %}
+    {% for obj in qs %}
         <div class="ui segment">
             <div class="ui grid">
                 <div class="row">
@@ -36,7 +36,7 @@ all profiles
                         {% endif %}
 
                         {% if request.user in obj.friends.all %}
-                        <form action="{% url 'profiles:remove-friend' %}" method="POST">
+                        <form action="#" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="profile_pk" value={{obj.pk}}>
                             <button type="submit" class="ui negative basic button mb-5 w-big"><i class="minus square icon"></i>Remove from friends</button>

@@ -24,7 +24,7 @@ my invites
                         <a href="">
                             <button class="ui primary button w-big mb-5">See profile</button>
                         </a>
-                        <form action="{% url 'profiles:accept-invite' %}" method="POST">
+                        <form action="#" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="profile_pk" value={{obj.pk}}>
                             <button type="submit" class="ui positive basic button w-big mb-5">
@@ -32,7 +32,7 @@ my invites
                                 Accept invite
                             </button>
                         </form>
-                         <form action="{% url 'profiles:reject-invite' %}" method="POST">
+                         <form action="#" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="profile_pk" value={{obj.pk}}>
                             <button type="submit" class="ui negative basic button w-big mb-5">

@@ -103,3 +103,4 @@ class PostUpdateView(UpdateView):
         else:
             form.add_error(None, "You need to be the author of the post in order to update it")
             return super().form_invalid(form)
+            
