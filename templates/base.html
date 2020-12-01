@@ -11,11 +11,17 @@
     <link rel="stylesheet" type="text/css" href={% static 'style.css' %}
     <!-- semantic UI -->
     <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'fav/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'fav/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'fav/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'fav/site.webmanifest' %}">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-
   
     <title>Angelbook - {% block title %}{% endblock title %}</title>
   </head>
+
   <body>
     {% include 'navbar.html' %}
     <div class="ui container">

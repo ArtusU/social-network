@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from profiles.models import Profile, Relationship
 from .forms import ProfileModelForm
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 def home_view(request):
     user = request.user
@@ -78,6 +79,7 @@ class ProfileListView(ListView):
         
         rel_receiver = []
         rel_sender = []
+
         
         for item in rel_r:
             rel_receiver.append(item.receiver.user)
@@ -86,7 +88,7 @@ class ProfileListView(ListView):
             rel_sender.append(item.sender.user)
 
         context["rel_receiver"] = rel_receiver
-        context["rel_seneder"] = rel_sender
+        context["rel_sender"] = rel_sender
         context["is_empty"] = False
 
         if len(self.get_queryset()) == 0:
@@ -95,3 +97,29 @@ class ProfileListView(ListView):
         return context
 
 
+def send_invitation(request):
+    if request.method=='POST':
+        pk = request.POST.get('profile_pk')
+        user = request.user
+        sender = Profile.objects.get(user=user)
+        receiver = Profile.objects.get(pk=pk)
+
+        rel = Relationship.objects.create(sender=sender, receiver=receiver, status='send')
+
+        return redirect(request.META.get('HTTP_REFERER'))
+    return redirect('profiles:my-profile-view')
+
+def remove_from_friends(request):
+    if request.method=='POST':
+        pk = request.POST.get('profile_pk')
+        user = request.user
+        sender = Profile.objects.get(user=user)
+        receiver = Profile.objects.get(pk=pk)
+
+        rel = Relationship.objects.filter(
+            (Q(sender=sender) & Q(receiver=receiver)) | (Q(sender=receiver) & Q(receiver=sender))
+        ).first()
+
+        rel.delete()
+        return redirect(request.META.get('HTTP_REFERER'))
+    return redirect('profiles:my-profile-view')
