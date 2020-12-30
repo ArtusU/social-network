@@ -45,15 +45,16 @@
             </div>
         
             <a href="{{path_to_my_profile}}" class="{% if request.path == path_to_my_profile %}active{% endif %} item">
-                <img src={{picture.url}} class="ui avatar image">&nbsp;
+                <img src={{avatar.url}} class="ui avatar image">
                  {{ request.user }}
             </a>
 
-            <a href="" class="ui item">
+
+            <a href="{% url "account_logout" %}" class="ui item">
                 Logout
             </a>
         {% else %}
-        <a href="" class="ui item">
+        <a href="{% url "account_login" %}" class="ui item">
                 Login
             </a>
         {% endif %}

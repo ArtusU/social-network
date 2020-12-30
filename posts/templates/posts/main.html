@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="ui grid">
-    <div class="eleven wide column">
+    <div class="nine wide column">
         {% for obj in qs %}
 
         <div class="ui fluid card">
@@ -19,6 +19,7 @@
                     </div>
                 </div>
                     
+
                 </div>
                 <img class="ui avatar image" src={{obj.author.avatar.url}}> 
                 {{ obj.author.user }} - {{ obj.created|timesince}} ago
@@ -86,7 +87,7 @@
 
         {% endfor %}
     </div>
-    <div class="five wide column">
+    <div class="seven wide column">
         <div class="ui segment">
             {% if post_added %}
                 <div class="ui green message">Post added</div>
